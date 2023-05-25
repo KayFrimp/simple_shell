@@ -8,7 +8,7 @@
  */
 void create_child(char **argv)
 {
-	pid_t child_pid;
+	pid_t child_pid, pid;
 	int status;
 
 	child_pid = fork();
@@ -16,6 +16,7 @@ void create_child(char **argv)
 	{
 		perror("Error:\n");
 		free_array(argv);
+		exit(1);
 	}
 	else if (child_pid == 0)
 	{
@@ -28,7 +29,11 @@ void create_child(char **argv)
 	}
 	else
 	{
-		wait(&status);
-		free_array(argv);
+		pid = waitpid(child_pid, &status, 0);
+		if (pid < 0)
+		{
+			free_array(argv);
+			exit(1);
+		}
 	}
 }
