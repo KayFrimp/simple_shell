@@ -75,3 +75,24 @@ void _perror(char *name, int count, char **argv)
 	write(2, argv[0], _strlen(argv[0]));
 	write(2, ": not found\n", 12);
 }
+
+/**
+ * spaces_check - checks if the user input only spaces.
+ * @lineptr: Pointer to array of input from user
+ *
+ * Return: 1 on success, 0 on failure
+ */
+int spaces_check(char *lineptr)
+{
+	int i = 0;
+
+	lineptr[_strlen(lineptr) - 1] = '\0';
+	while (lineptr[i] != '\0')
+	{
+		if (lineptr[i] != ' ')
+			return (0);
+		i++;
+
+	}
+	return (1);
+}

@@ -18,10 +18,8 @@ int main(int ac __attribute__((unused)), char **av)
 		if (isatty(0))
 			write(1, "#cisfun$ ", 10);
 		lineptr = get_input();
-		if (*lineptr == '\n')
-		{
+		if (*lineptr == '\n' || spaces_check(lineptr))
 			free(lineptr);
-		}
 		else
 		{
 			/* Duplicate lineptr and get the number of tokens in count */

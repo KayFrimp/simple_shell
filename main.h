@@ -21,5 +21,6 @@ void free_array(char **buffer);
 void free_array_exit(char **buffer);
 void create_child(char *name, char **argv, int count, char **env);
 void _perror(char *name, int count, char **argv);
+int spaces_check(char *lineptr);
 
 #endif /** MAIN_H **/
