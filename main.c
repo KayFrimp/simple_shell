@@ -25,8 +25,10 @@ int main(void)
 		}
 		else
 		{
+			write(2, "Error: Issue with Arguments", 27);
 			free_array(argv);
 			free(lineptr);
+			exit(1);
 		}
 	}
 
