@@ -18,7 +18,7 @@ char *get_input(void)
 		free(lineptr);
 		if (isatty(0))
 			write(1, "\n", 1);
-		exit(1);
+		exit(EXIT_SUCCESS);
 	}
 
 	return (lineptr);

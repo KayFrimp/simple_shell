@@ -1,9 +1,11 @@
 #include"main.h"
 /**
- * main - shell entry point.
+ * main - shell entry point
+ * @ac: argument count
+ * @av: argument list.
  * Return: 0 always
  */
-int main(void)
+int main(int ac __attribute__((unused)), char **av)
 {
 	char *lineptr, *cpy_lineptr, **argv;
 	const char *delim = " \n\t\0";
@@ -14,7 +16,7 @@ int main(void)
 	{
 		i++;
 		if (isatty(0))
-			write(1, "#cisfun$ ", 11);
+			write(1, "#cisfun$ ", 10);
 		lineptr = get_input();
 		if (*lineptr == '\n')
 		{
@@ -30,15 +32,15 @@ int main(void)
 			if (argv != NULL)
 			{
 				/* Create child process to execute commands */
-				create_child(argv, i, env);
+				create_child(av[0], argv, i, env);
 			}
 			else
 			{
 				write(2, "Error: Issue with Arguments", 27);
 				free_array(argv);
-				exit(1);
+				exit(EXIT_FAILURE);
 			}
 		}
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

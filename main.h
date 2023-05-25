@@ -18,7 +18,8 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 char *_strdup(char *str);
 int count_tokens(char *lineptr, const char *delim);
 void free_array(char **buffer);
-void create_child(char **argv, int count, char **env);
-void _perror(char *cmd, int count, char **argv);
+void free_array_exit(char **buffer);
+void create_child(char *name, char **argv, int count, char **env);
+void _perror(char *name, int count, char **argv);
 
 #endif /** MAIN_H **/

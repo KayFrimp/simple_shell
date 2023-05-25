@@ -2,12 +2,13 @@
 
 /**
  * create_child - Fxn creates a child process to execute cmd
+ * @name: Name of shell
  * @argv: Array of commands
  * @count: Program iteration count
  * @env: Environment List
  * Return: Null
  */
-void create_child(char **argv, int count, char **env)
+void create_child(char *name, char **argv, int count, char **env)
 {
 	pid_t child_pid, pid;
 	int status;
@@ -17,8 +18,7 @@ void create_child(char **argv, int count, char **env)
 	if (child_pid == -1)
 	{
 		perror("Error:\n");
-		free_array(argv);
-		exit(1);
+		free_array_exit(argv);
 	}
 	else if (child_pid == 0)
 	{
@@ -27,16 +27,15 @@ void create_child(char **argv, int count, char **env)
 			if (execve(argv[0], argv, env) == -1)
 			{
 				perror("Error with command\n");
-				free_array(argv);
-				exit(1);
+				free_array_exit(argv);
 			}
+			/* exit(EXIT_SUCCESS); */
 		}
 		else
 		{
 			/* Run if command doesn't exist */
-			_perror(argv[0], count, argv);
+			_perror(name, count, argv);
 			free_array(argv);
-			argv = NULL;
 		}
 	}
 	else
@@ -44,8 +43,7 @@ void create_child(char **argv, int count, char **env)
 		pid = waitpid(child_pid, &status, 0);
 		if (pid < 0)
 		{
-			free_array(argv);
-			exit(1);
+			free_array_exit(argv);
 		}
 		free_array(argv);
 	}

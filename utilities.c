@@ -55,41 +55,20 @@ char *_strdup(char *str)
 	return (dup_str);
 }
 
-
-/**
- * free_array - Frees memory allocated to array
- * @buffer: array of pointers
- *
- * Return: Nothing
- */
-void free_array(char **buffer)
-{
-	unsigned int i = 0;
-
-	if (buffer == NULL)
-		return;
-	while (buffer[i])
-	{
-		free(buffer[i]);
-		i++;
-	}
-	free(buffer);
-}
-
 /**
  * _perror - prints error messahe
- * @cmd: Command entered by user
+ * @name: Name of shell
  * @count: program iteration count
  * @argv: Array of commands.
  *
  * Return: Nothing.
  */
-void _perror(char *cmd, int count, char **argv)
+void _perror(char *name, int count, char **argv)
 {
 	char c;
 
 	c = count + '0';
-	write(2, cmd, _strlen(cmd));
+	write(2, name, _strlen(name));
 	write(2, ": ", 2);
 	write(2, &c, 1);
 	write(2, ": ", 2);
