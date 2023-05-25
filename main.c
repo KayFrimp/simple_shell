@@ -5,5 +5,9 @@
  */
 int main(void)
 {
+	char *lineptr;
+
+	printf("#cisfun$ ");
+	lineptr = get_input();
 	return (0);
 }
