@@ -38,7 +38,6 @@ void create_child(char **argv, int count, char **env)
 			free_array(argv);
 			argv = NULL;
 		}
-		fflush(stdin);
 	}
 	else
 	{
@@ -48,5 +47,6 @@ void create_child(char **argv, int count, char **env)
 			free_array(argv);
 			exit(1);
 		}
+		free_array(argv);
 	}
 }

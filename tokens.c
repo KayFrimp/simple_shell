@@ -12,7 +12,7 @@ char **split_strings(char *lineptr, const char *delim, int count)
 	char **tokens = NULL, *token;
 	unsigned int i;
 
-	if (lineptr == NULL || delim == NULL)
+	if (lineptr == NULL)
 		return (NULL);
 	/* Allocate memory to hold tokens */
 	tokens = malloc(sizeof(char *) * (count + 1));
@@ -35,6 +35,7 @@ char **split_strings(char *lineptr, const char *delim, int count)
 		token = strtok(NULL, delim);
 	}
 	tokens[i] = NULL;
+	/* free(token); */
 	free(lineptr);
 	return (tokens);
 }

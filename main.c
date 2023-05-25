@@ -6,7 +6,7 @@
 int main(void)
 {
 	char *lineptr, *cpy_lineptr, **argv;
-	const char *delim = " \n";
+	const char *delim = " \n\t\0";
 	int count, i = 0;
 	char **env = environ;
 
@@ -15,24 +15,29 @@ int main(void)
 		i++;
 		printf("#cisfun$ ");
 		lineptr = get_input();
-		/* Duplicate lineptr and get the number of tokens in count */
-		cpy_lineptr = _strdup(lineptr);
-		count = count_tokens(cpy_lineptr, delim);
-		/* Call fxn to split lineptr to array of tokens */
-		argv = split_strings(lineptr, delim, count);
-		if (argv != NULL)
+		if (*lineptr == '\n')
 		{
-			/* Create child process to execute commands */
-			create_child(argv, i, env);
+			free(lineptr);
 		}
 		else
 		{
-			write(2, "Error: Issue with Arguments", 27);
-			free_array(argv);
-			free(lineptr);
-			exit(1);
+			/* Duplicate lineptr and get the number of tokens in count */
+			cpy_lineptr = _strdup(lineptr);
+			count = count_tokens(cpy_lineptr, delim);
+			/* Call fxn to split lineptr to array of tokens */
+			argv = split_strings(lineptr, delim, count);
+			if (argv != NULL)
+			{
+				/* Create child process to execute commands */
+				create_child(argv, i, env);
+			}
+			else
+			{
+				write(2, "Error: Issue with Arguments", 27);
+				free_array(argv);
+				exit(1);
+			}
 		}
 	}
-
 	return (0);
 }
