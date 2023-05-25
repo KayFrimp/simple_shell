@@ -3,13 +3,15 @@
 /**
  * create_child - Fxn creates a child process to execute cmd
  * @argv: Array of commands
+ * @count: Program iteration count
  *
  * Return: Null
  */
-void create_child(char **argv)
+void create_child(char **argv, int count)
 {
 	pid_t child_pid, pid;
 	int status;
+	struct stat st;
 
 	child_pid = fork();
 	if (child_pid == -1)
@@ -20,12 +22,23 @@ void create_child(char **argv)
 	}
 	else if (child_pid == 0)
 	{
-		if (execve(argv[0], argv, NULL) == -1)
+		if (stat(argv[0], &st) == 0)
 		{
-			perror("Error\n");
-			free_array(argv);
-			exit(1);
+			if (execve(argv[0], argv, NULL) == -1)
+			{
+				perror("Error with command\n");
+				free_array(argv);
+				exit(1);
+			}
 		}
+		else
+		{
+			/* Run if command doesn't exist */
+			_perror(argv[0], count, argv);
+			free_array(argv);
+			argv = NULL;
+		}
+		fflush(stdin);
 	}
 	else
 	{

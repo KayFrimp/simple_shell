@@ -75,3 +75,24 @@ void free_array(char **buffer)
 	}
 	free(buffer);
 }
+
+/**
+ * _perror - prints error messahe
+ * @cmd: Command entered by user
+ * @count: program iteration count
+ * @argv: Array of commands.
+ *
+ * Return: Nothing.
+ */
+void _perror(char *cmd, int count, char **argv)
+{
+	char c;
+
+	c = count + '0';
+	write(2, cmd, _strlen(cmd));
+	write(2, ": ", 2);
+	write(2, &c, 1);
+	write(2, ": ", 2);
+	write(2, argv[0], _strlen(argv[0]));
+	write(2, ": not found\n", 12);
+}

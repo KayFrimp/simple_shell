@@ -7,10 +7,11 @@ int main(void)
 {
 	char *lineptr, *cpy_lineptr, **argv;
 	const char *delim = " \n";
-	int count;
+	int count, i = 0;
 
 	while (1)
 	{
+		i++;
 		printf("#cisfun$ ");
 		lineptr = get_input();
 		/* Duplicate lineptr and get the number of tokens in count */
@@ -21,7 +22,7 @@ int main(void)
 		if (argv != NULL)
 		{
 			/* Create child process to execute commands */
-			create_child(argv);
+			create_child(argv, i);
 		}
 		else
 		{

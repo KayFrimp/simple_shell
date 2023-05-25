@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 
 char *get_input(void);
 char **split_strings(char *lineptr, const char *delim, int count);
@@ -15,6 +16,7 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 char *_strdup(char *str);
 int count_tokens(char *lineptr, const char *delim);
 void free_array(char **buffer);
-void create_child(char **argv);
+void create_child(char **argv, int count);
+void _perror(char *cmd, int count, char **argv);
 
 #endif /** MAIN_H **/
