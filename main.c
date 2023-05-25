@@ -9,5 +9,8 @@ int main(void)
 
 	printf("#cisfun$ ");
 	lineptr = get_input();
+	/* Duplicate lineptr and get the number of tokens in count */
+	cpy_lineptr = strdup(lineptr);
+	count = count_tokens(cpy_lineptr, delim);
 	return (0);
 }
