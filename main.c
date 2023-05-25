@@ -9,7 +9,7 @@ int main(void)
 	const char *delim = " \n";
 	int count;
 
-	while(1)
+	while (1)
 	{
 		printf("#cisfun$ ");
 		lineptr = get_input();
