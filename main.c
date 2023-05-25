@@ -12,5 +12,7 @@ int main(void)
 	/* Duplicate lineptr and get the number of tokens in count */
 	cpy_lineptr = strdup(lineptr);
 	count = count_tokens(cpy_lineptr, delim);
+	/* Call fxn to split lineptr to array of tokens */
+	argv = split_strings(lineptr, delim, count);
 	return (0);
 }
