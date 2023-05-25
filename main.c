@@ -13,7 +13,8 @@ int main(void)
 	while (1)
 	{
 		i++;
-		printf("#cisfun$ ");
+		if (isatty(0))
+			write(1, "#cisfun$ ", 11);
 		lineptr = get_input();
 		if (*lineptr == '\n')
 		{
