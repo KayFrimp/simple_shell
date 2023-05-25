@@ -25,7 +25,7 @@ char **split_strings(char *lineptr, const char *delim, int count)
 	token = strtok(lineptr, delim);
 	for (i = 0; token != NULL; i++)
 	{
-		tokens[i] = strdup(token);
+		tokens[i] = _strdup(token);
 		if (tokens[i] == NULL)
 		{
 			free_array(tokens);
