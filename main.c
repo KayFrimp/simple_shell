@@ -8,6 +8,7 @@ int main(void)
 	char *lineptr, *cpy_lineptr, **argv;
 	const char *delim = " \n";
 	int count, i = 0;
+	char **env = environ;
 
 	while (1)
 	{
@@ -22,7 +23,7 @@ int main(void)
 		if (argv != NULL)
 		{
 			/* Create child process to execute commands */
-			create_child(argv, i);
+			create_child(argv, i, env);
 		}
 		else
 		{

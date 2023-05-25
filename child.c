@@ -4,10 +4,10 @@
  * create_child - Fxn creates a child process to execute cmd
  * @argv: Array of commands
  * @count: Program iteration count
- *
+ * @env: Environment List
  * Return: Null
  */
-void create_child(char **argv, int count)
+void create_child(char **argv, int count, char **env)
 {
 	pid_t child_pid, pid;
 	int status;
@@ -24,7 +24,7 @@ void create_child(char **argv, int count)
 	{
 		if (stat(argv[0], &st) == 0)
 		{
-			if (execve(argv[0], argv, NULL) == -1)
+			if (execve(argv[0], argv, env) == -1)
 			{
 				perror("Error with command\n");
 				free_array(argv);

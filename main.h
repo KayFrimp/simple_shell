@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+extern char **environ;
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -16,7 +18,7 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 char *_strdup(char *str);
 int count_tokens(char *lineptr, const char *delim);
 void free_array(char **buffer);
-void create_child(char **argv, int count);
+void create_child(char **argv, int count, char **env);
 void _perror(char *cmd, int count, char **argv);
 
 #endif /** MAIN_H **/
