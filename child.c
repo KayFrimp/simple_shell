@@ -29,7 +29,6 @@ void create_child(char *name, char **argv, int count, char **env)
 				perror("Error with command\n");
 				free_array_exit(argv);
 			}
-			/* exit(EXIT_SUCCESS); */
 		}
 		else
 		{
