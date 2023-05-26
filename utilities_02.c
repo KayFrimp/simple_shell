@@ -1,21 +1,6 @@
 #include "main.h"
 
 /**
- * _atoi - converts string to integer
- * @s: character pointer variable
- *
- * Return: Retrun number or 0 if there is none
- */
-int _atoi(char *s)
-{
-	int len = 0;
-
-	while (*(s + len) != '\0')
-		len++;
-	return (0);
-}
-
-/**
  * _strcmp - compares two strings
  * @s1: Character pointer variable
  * @s2: Character pointer variable
@@ -44,15 +29,32 @@ int _strcmp(char *s1, char *s2)
  */
 void exit_shell(char **argv)
 {
-	int status = 0;
+	int num, status = 0;
 
-	if (argv != NULL)
+	if (argv[0] != NULL)
 	{
-		if (argv[0] != NULL)
-		{
-			status = _atoi(argv[0]);
-			free_array(argv);
-			exit(status);
-		}
+		num = _isdigit(argv[0]);
+		if (!num)
+			status = 2;
+		free_array(argv);
+		exit(status);
 	}
+}
+
+/**
+ * _isdigit - checks if string is a number
+ * @s: pointer to char
+ *
+ * Return: 1 if s points to a number and 0 if otherwise
+ */
+int _isdigit(char *s)
+{
+	int i;
+
+	for (i = 0; s[i]; i++)
+	{
+		if (s[i] < 48 || s[i] > 57)
+			return (0);
+	}
+	return (1);
 }
