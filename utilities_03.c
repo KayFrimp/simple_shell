@@ -3,7 +3,6 @@
 /**
  * get_cmdpath - Gets full cmd path from environment
  * @env: Environment
- * @pathvar: Path variable
  *
  * Return: directories in path or NULL
  */
