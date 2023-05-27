@@ -15,6 +15,8 @@ void fxn_calls(char **argv, char **env, int i, char **av)
 	{
 		if (_strcmp(argv[0], "exit") == 0)
 			exit_shell(argv);
+		else if (_strcmp(argv[0], "env") == 0)
+			print_env(argv, env);
 		else
 		{
 			/* Create child process to execute commands */

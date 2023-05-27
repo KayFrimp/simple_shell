@@ -27,5 +27,7 @@ int _strcmp(char *s1, char *s2);
 void fxn_calls(char **argv, char **env, int i, char **av);
 void exit_shell(char **argv);
 int _isdigit(char *s);
+int _atoi(char *s);
+void print_env(char **argv, char **env);
 
 #endif /** MAIN_H **/

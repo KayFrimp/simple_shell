@@ -36,6 +36,7 @@ void exit_shell(char **argv)
 		num = _isdigit(argv[0]);
 		if (!num)
 			status = 2;
+		/* status = _atoi(argv[0]); */
 		free_array(argv);
 		exit(status);
 	}
@@ -57,4 +58,51 @@ int _isdigit(char *s)
 			return (0);
 	}
 	return (1);
+}
+
+/**
+ * _atoi - converts string to integer
+ * @s: character pointer variable
+ *
+ * Return: Retrun number or 0 if there is none
+ */
+int _atoi(char *s)
+{
+	int i = 0, num = 0, sign = 1;
+
+	while (!((s[i] >= '0') && (s[i] <= '9')) && (s[i] != '\0'))
+	{
+		if (s[i] == '-')
+		{
+			sign = sign * (-1);
+		}
+		i++;
+	}
+	while ((s[i] >= '0') && (s[i] <= '9'))
+	{
+		num = (num * 10) + (sign * (s[i] - '0'));
+		i++;
+	}
+	return (num);
+}
+
+/**
+ * print_env - Prints all environment directories
+ * @argv: Array of user input
+ * @env: Pointer to environment variable
+ *
+ * Return: Nothing
+ */
+void print_env(char **argv, char **env)
+{
+	int i = 0, len = 0;
+
+	while (env[i])
+	{
+		len = _strlen(env[i]);
+		write(STDOUT_FILENO, env[i], len);
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
+	free_array(argv);
 }

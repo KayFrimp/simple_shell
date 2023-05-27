@@ -2,7 +2,8 @@
 /**
  * main - shell entry point
  * @ac: argument count
- * @av: argument list.
+ * @av: argument list
+ *
  * Return: 0 always
  */
 int main(int ac __attribute__((unused)), char **av)
