@@ -29,5 +29,8 @@ void exit_shell(char **argv);
 int _isdigit(char *s);
 int _atoi(char *s);
 void print_env(char **argv, char **env);
+void cmd_exec(char **argv, char **env, char *name, int count);
+char *_strcat(char *dest, char *src);
+char **get_cmdpath(char **env);
 
 #endif /** MAIN_H **/

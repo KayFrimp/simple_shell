@@ -10,9 +10,8 @@
  */
 void create_child(char *name, char **argv, int count, char **env)
 {
-	pid_t child_pid, pid;
 	int status;
-	struct stat st;
+	pid_t child_pid, pid;
 
 	child_pid = fork();
 	if (child_pid == -1)
@@ -22,20 +21,7 @@ void create_child(char *name, char **argv, int count, char **env)
 	}
 	else if (child_pid == 0)
 	{
-		if (stat(argv[0], &st) == 0)
-		{
-			if (execve(argv[0], argv, env) == -1)
-			{
-				perror("Error with command\n");
-				free_array_exit(argv);
-			}
-		}
-		else
-		{
-			/* Run if command doesn't exist */
-			_perror(name, count, argv);
-			free_array(argv);
-		}
+		cmd_exec(argv, env, name, count);
 	}
 	else
 	{
