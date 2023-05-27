@@ -36,6 +36,6 @@ char **split_strings(char *lineptr, const char *delim, int count)
 	}
 	tokens[i] = NULL;
 	/* free(token); */
-	free(lineptr);
+	/* free(lineptr); */
 	return (tokens);
 }

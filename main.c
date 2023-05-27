@@ -28,6 +28,7 @@ int main(int ac __attribute__((unused)), char **av)
 			count = count_tokens(cpy_lineptr, delim);
 			/* Call fxn to split lineptr to array of tokens */
 			argv = split_strings(lineptr, delim, count);
+			free(lineptr);
 			fxn_calls(argv, env, i, av);
 		}
 	}

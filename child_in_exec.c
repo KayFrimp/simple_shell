@@ -12,7 +12,7 @@
 void cmd_exec(char **argv, char **env, char *name, int count)
 {
 	struct stat st;
-	char **pathvar = NULL, *cmdpath;
+	char **pathvar = NULL, *cmdpath = NULL;
 	int i = 0;
 
 	if (stat(argv[0], &st) == 0)

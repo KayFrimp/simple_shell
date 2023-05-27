@@ -9,21 +9,22 @@
  */
 char **get_cmdpath(char **env)
 {
-	char **env_cpy = env, *pathval = NULL, **pathvar = NULL, *delim = ":";
+	char *pathval = NULL, *cpy_pathval, **pathvar = NULL, *delim = ":";
 	int i = 0, count = 0;
 
-	pathval = strtok(env_cpy[i], "=");
-	while (env_cpy[i])
+	pathval = strtok(env[i], "=");
+	while (env[i])
 	{
 		if (_strcmp(pathval, "PATH") == 0)
 		{
 			pathval = strtok(NULL, "\n");
-			count = _strlen(pathval);
+			cpy_pathval = _strdup(pathval);
+			count = count_tokens(cpy_pathval, delim);
 			pathvar = split_strings(pathval, delim, count);
 			return (pathvar);
 		}
 		i++;
-		pathval = strtok(env_cpy[i], "=");
+		pathval = strtok(env[i], "=");
 	}
 	return (NULL);
 }
@@ -37,20 +38,16 @@ char **get_cmdpath(char **env)
  */
 char *_strcat(char *dest, char *src)
 {
-	int len = 0, i, j = 0;
+	int len = 0, j = 0;
 
-	while (*(dest + len) != '\0')
+	while (dest[len])
 		len++;
 	dest[len] = '/';
 	len++;
-	for (i = len; i > 0; i++)
+	while (src[j])
 	{
-		if (*(src + j) == '\0')
-		{
-			*(dest + i) = '\0';
-			break;
-		}
-		*(dest + i) = *(src + j);
+		dest[len] = src[j];
+		len++;
 		j++;
 	}
 	return (dest);
